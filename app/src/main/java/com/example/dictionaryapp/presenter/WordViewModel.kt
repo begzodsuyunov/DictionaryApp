@@ -15,4 +15,5 @@ interface WordViewModel {
     fun changeFavorite(wordData: WordData)
     fun filter(query: String)
     fun showFavourites()
+    fun showAll()
 }

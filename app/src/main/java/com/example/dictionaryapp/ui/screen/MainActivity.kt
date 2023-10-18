@@ -147,4 +147,24 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
         super.onDestroy()
     }
+    override fun onResume() {
+        super.onResume()
+
+        // Query your ViewModel for the latest cursor data
+        viewModel.showAll()
+
+        // Assuming you have a function in your ViewModel to get the cursor data
+        // and you've updated the cursorLiveData property in the ViewModel accordingly.
+
+        viewModel.cursorLiveData.observe(this) { cursor ->
+            if (cursor.count == 0) {
+                emptyPlaceholder.visibility = View.VISIBLE
+            } else {
+                emptyPlaceholder.visibility = View.GONE
+            }
+
+            // Update your adapter with the latest cursor
+            adapter.submitCursor(cursor)
+        }
+    }
 }

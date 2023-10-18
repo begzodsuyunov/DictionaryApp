@@ -40,7 +40,9 @@ class WordViewModelImpl : WordViewModel, ViewModel() {
     override fun showFavourites() {
         favouritesLiveData.value = wordRepository.getFavourites()
     }
-
+    override fun showAll() {
+        cursorLiveData.value = wordRepository.getWordCursor()
+    }
     init{
         cursorLiveData.value = wordRepository.getWordCursor()
     }
